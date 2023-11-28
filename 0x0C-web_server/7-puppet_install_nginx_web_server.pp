@@ -9,7 +9,7 @@ exec { 'install nginx and update packages':
 }
 
 exec { 'Hello World':
-  command => 'sudo ufw allow 'Nginx HTTP; echo "Hello World!" > /var/www/html/index.html'
+  command => 'sudo ufw allow "Nginx HTTP"; echo "Hello World!" > /var/www/html/index.html'
 }
 
 exec { 'perform redirection':
