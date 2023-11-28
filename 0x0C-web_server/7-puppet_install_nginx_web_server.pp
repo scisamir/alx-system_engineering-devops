@@ -1,7 +1,7 @@
 # install and configure nginx using puppet
 
 package { 'nginx':
-  ensure => 'installed'
+  ensure => 'present'
 }
 
 exec { 'install nginx and update packages':
