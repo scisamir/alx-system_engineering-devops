@@ -9,3 +9,8 @@ package { 'flask':
   provider => 'pip3',
   require  => Package['python3-pip']
 }
+
+exec { 'update werkzeug':
+  command => 'pip3 install --upgrade werkzeug',
+  require => Package['python3-pip']
+}
