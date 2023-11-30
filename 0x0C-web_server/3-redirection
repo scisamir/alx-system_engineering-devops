@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # Redirection
 
+redirection_cmd="\\\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
+
 sudo apt-get update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 echo "Hello World!" > /var/www/html/index.html
-sudo sed -i "/listen 80 default_server/a \trewrite ^/redirect_me https://github.com permane
-nt;" /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/a $redirection_cmd permanent;" /etc/nginx/sites-available/default
 sudo service nginx reload
