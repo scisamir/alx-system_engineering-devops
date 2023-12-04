@@ -10,7 +10,7 @@ apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 
 # Setup custom http response header
-sed -i "/server_name _;/a \\\n\tadd_header X-Served-By $HOSTNAME;\n" /etc/nginx/sites-available/default
+sed -i "/http {/a \\\n\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
 
 # Add server home page
 echo "Hello World!" > /var/www/html/index.html
