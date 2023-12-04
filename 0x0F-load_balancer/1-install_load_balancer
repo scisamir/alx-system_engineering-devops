@@ -16,3 +16,6 @@ echo 'ENABLED=1' >> /etc/default/haproxy
 
 # Configure load balancing
 echo -e "$hapConfig" >> /etc/haproxy/haproxy.cfg
+
+# Restart haproxy
+service haproxy restart
