@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Redirection & Custom 404 page
+
+redirection_cmd="\\\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
+not_found="\\\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
+
+# Install and setup nginx server
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+echo "Hello World!" > /var/www/html/index.html
+
+# Redirect /redirect_me to another url
+sudo sed -i "/server_name _;/a $redirection_cmd" /etc/nginx/sites-available/default
+
+# Setup custom 404 page
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
+sudo sed -i "/server_name _;/a $not_found" /etc/nginx/sites-enabled/default
+
+# Setup custom http response header
+sed -i "/server_name _;/a \\\n\tadd_header X-Served-By $HOSTNAME;\n" /etc/nginx/sites-available/default
+
+# Restart nginx server
+sudo service nginx restart
