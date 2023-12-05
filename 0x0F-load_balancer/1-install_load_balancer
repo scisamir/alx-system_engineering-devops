@@ -5,11 +5,11 @@ hapConfig='\nfrontend http\n\tbind *:80\n\tmode http\n\tdefault_backend web-back
 
 # Ready system for installation
 apt-get -y install --no-install-recommends software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-2.8
+add-apt-repository -y ppa:vbernat/haproxy-2.0
 apt-get -y update
 
 # Install haproxy
-apt-get -y install haproxy=2.8.\*
+apt-get -y install haproxy=2.0.\*
 
 # Make haproxy manageable by init script
 echo "ENABLED=1" >> /etc/default/haproxy
