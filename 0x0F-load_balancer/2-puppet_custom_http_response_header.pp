@@ -15,11 +15,11 @@ file { '/var/www/html/index.html':
 }
 
 exec { 'setup custom http response header':
-  command  => 'sed -i "/http {/a \\\n\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf',
+  command  => "sed -i '/http {/a \\\n\\tadd_header X-Served-By ${hostname};' /etc/nginx/nginx.conf",
   provider => shell
 }
 
-exec { 'restart nginx':
-  command  => 'sudo service nginx restart',
-  provider => shell
+service { 'nginx':
+  ensure => running,
+  name   => 'nginx'
 }
