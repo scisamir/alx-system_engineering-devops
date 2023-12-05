@@ -14,11 +14,9 @@ file { '/var/www/html/index.html':
   content => 'Hello World!'
 }
 
-file_line { 'setup custom http response header':
-  ensure => present,
-  path   => '/etc/nginx/nginx.conf',
-  line   => "\n\tadd_header X-Served-By ${hostname}",
-  after  => 'http {'
+exec { 'setup custom http response header':
+  command  => 'sed -i "/http {/a \\\n\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf',
+  provider => shell
 }
 
 exec { 'restart nginx':
