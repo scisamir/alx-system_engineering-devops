@@ -19,7 +19,7 @@ file { '/var/www/html/index.html':
 exec { 'setup custom http response header':
   command  => "sed -i '/http {/a \\\n\\tadd_header X-Served-By ${hostname};' /etc/nginx/nginx.conf",
   provider => shell,
-  require => Package['nginx']
+  require  => Package['nginx']
 }
 
 exec { 'restart nginx':
