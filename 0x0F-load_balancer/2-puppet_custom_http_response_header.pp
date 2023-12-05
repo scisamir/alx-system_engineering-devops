@@ -22,5 +22,5 @@ exec { 'setup custom http response header':
 exec { 'restart nginx':
   command  => 'sudo service nginx restart',
   provider => shell,
-  require  => Exec["setup custom http response header"]
+  require  => Exec['setup custom http response header']
 }
