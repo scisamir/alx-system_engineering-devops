@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Analyses a domain or sub-domain using "dig" and outputs the dns record type and ip address
 
 subs=("www" "lb-01" "web-01" "web-02")
 
