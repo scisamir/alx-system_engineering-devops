@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # whoami as different user
 
-su - "$1" -c 'whoami'
+sudo -u "$1" whoami
