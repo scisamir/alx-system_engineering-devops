@@ -4,6 +4,6 @@
 $file = '/var/www/html/wp-settings.php'
 
 exec { 'fix_file_ext':
-  command => "sed -i 's/class-wp.locale.phpp/class-wp.locale.php/g' ${file}",
-  path    => ['/bin', '/usr/bin']
+  command => "sed -i 's/class-wp-locale.phpp/class-wp-locale.php/g' ${file}",
+  path    => ['/bin', '/usr/bin', '/usr/sbin']
 }
