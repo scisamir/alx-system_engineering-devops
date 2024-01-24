@@ -8,6 +8,7 @@ exec { 'increase limit':
 }
 
 exec { 'restart nginx':
+  require => Exec['increase limit'],
   command => 'service nginx restart',
   path    => ['/bin', '/usr/bin']
 }
